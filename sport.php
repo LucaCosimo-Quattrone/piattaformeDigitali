@@ -69,6 +69,8 @@ function getGames($games)
 $url = "https://www.scorebat.com/video-api/v1/";
 $data = getUrlContent($url);
 $data = json_decode($data,true);
+print_r($data);
+
 
 if (count($data) == 0)
 {

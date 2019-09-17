@@ -48,19 +48,19 @@ function getGames($games)
        $i < count($games);
        $i++)
   {
-      $aGames['title'][$i] = $games['title'][$i];
-      $aGames['embed'][$i] = $games['embed'][$i];
-      $aGames['url'][$i] = $games['url'][$i];
-      $aGames['thumbnail'][$i] = $games['thumbnail'][$i];
-      $aGames['date'][$i] = $games['date'][$i];
-      $aGames['side1'][$i]['name'][$i] = $games['side1'][$i]['name'][$i];
-      $aGames['side1'][$i]['url'][$i] = $games['side1'][$i]['url'][$i];
-      $aGames['side2'][$i]['name'][$i] = $games['side2'][$i]['name'][$i];
-      $aGames['side2'][$i]['url'][$i] = $games['side2'][$i]['url'][$i];
-      $aGames['competition'][$i]['name'][$i] = $games['competition'][$i]['name'][$i];
-      $aGames['competition'][$i]['url'][$i] = $games['competition'][$i]['url'][$i];
-      $aGames['videos'][$i]['title'][$i] = $games['videos'][$i]['title'][$i];
-      $aGames['videos'][$i]['embed'][$i] = $games['videos'][$i]['embed'][$i];
+      $aGames[$i]['title'] = $games[$i]['title'];
+      $aGames[$i]['embed'] = $games[$i]['embed'];
+      $aGames[$i]['url'] = $games[$i]['url'];
+      $aGames[$i]['thumbnail'] = $games[$i]['thumbnail'];
+      $aGames[$i]['date'] = $games[$i]['date'];
+      $aGames[$i]['side1'][$i]['name'] = $games[$i]['side1'][$i]['name'];
+      $aGames[$i]['side1'][$i]['url'] = $games[$i]['side1'][$i]['url'];
+      $aGames[$i]['side2'][$i]['name'] = $games[$i]['side2'][$i]['name'];
+      $aGames[$i]['side2'][$i]['url'] = $games[$i]['side2'][$i]['url'];
+      $aGames[$i]['competition'][$i]['name'] = $games[$i]['competition'][$i]['name'];
+      $aGames[$i]['competition'][$i]['url'] = $games[$i]['competition'][$i]['url'];
+      $aGames[$i]['videos'][$i]['title'] = $games[$i]['videos'][$i]['title'];
+      $aGames[$i]['videos'][$i]['embed'] = $games[$i]['videos'][$i]['embed'];
   }
 
   return($aGames);
@@ -70,7 +70,6 @@ $url = "https://www.scorebat.com/video-api/v1/";
 $data = getUrlContent($url);
 $data = json_decode($data,true);
 print_r($data);
-
 
 if (count($data) == 0)
 {
@@ -88,4 +87,3 @@ else
 
 
 ?>
-

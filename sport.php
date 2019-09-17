@@ -49,11 +49,31 @@ function getGames($games)
        $i < count($games);
        $i++)
   {
-      $aGames[$i]['title'][$i] = $games[$i]['title'][$i];
-      $aGames[$i]['embed'][$i] = $games[$i]['embed'][$i];
-      $aGames[$i]['url'][$i] = $games[$i]['url'][$i];
-      $aGames[$i]['thumbnail'][$i] = $games[$i]['thumbnail'][$i];
-      $aGames[$i]['date'][$i] = $games[$i]['date'][$i];
+      if(!empty($games[$i]['title'][$i]))
+        $aGames[$i]['title'][$i] = $games[$i]['title'][$i];
+      else
+        $aGames[$i]['title'][$i] = "NULL";
+
+      if(!empty($games[$i]['embed'][$i]))
+        $aGames[$i]['embed'][$i] = $games[$i]['embed'][$i];
+      else
+        $aGames[$i]['embed'][$i] = "NULL";
+
+      if(!empty($games[$i]['url'][$i]))
+        $aGames[$i]['url'][$i] = $games[$i]['url'][$i];
+      else
+        $aGames[$i]['url'][$i] = "NULL";
+
+      if(!empty($games[$i]['thumbnail'][$i]))
+        $aGames[$i]['thumbnail'][$i] = $games[$i]['thumbnail'][$i];
+      else
+        $aGames[$i]['thumbnail'][$i] = "NULL";
+
+      if(!empty($games[$i]['date'][$i]))
+        $aGames[$i]['date'][$i] = $games[$i]['date'][$i];
+      else
+        $aGames[$i]['date'][$i] = "NULL";
+        
       //$aGames[$i]['side1'][$i]['name'][$i] = $games[$i]['side1'][$i]['name'][$i];
       //$aGames[$i]['side1'][$i]['url'][$i] = $games[$i]['side1'][$i]['url'][$i];
       //$aGames[$i]['side2'][$i]['name'][$i] = $games[$i]['side2'][$i]['name'][$i];
@@ -88,4 +108,5 @@ else
 
 
 ?>
+
 

@@ -29,8 +29,6 @@ function response($status, $status_message, $data)
 }
 function getGames($games)
 {
-  ?><p><?php echo implode("", $games); ?> </p>
-  <?php  
   $aGames = array('title' => [],
 					        'embed' =>[],
 					        'url' => [],

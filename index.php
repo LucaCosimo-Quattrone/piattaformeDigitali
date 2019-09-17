@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type:application/json");
 //Pagina principale del web server
 
 function getUrlContent($url)

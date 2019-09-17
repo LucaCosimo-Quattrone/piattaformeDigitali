@@ -72,7 +72,7 @@ $data = json_decode($response,true);
 
 if (count($data['title']) == 0)
 {
-  deliver_response(204,"Assente",NULL);
+  response(204,"Assente",NULL);
 }
 elseif (count($data['title']) > 0)
 {
@@ -81,8 +81,9 @@ elseif (count($data['title']) > 0)
 }
 else
 {
-  deliver_response(400,"Rischiesta non valida",NULL);
+  response(400,"Rischiesta non valida",NULL);
 }
 
 
 ?>
+

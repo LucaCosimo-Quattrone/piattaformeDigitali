@@ -29,38 +29,39 @@ function response($status, $status_message, $data)
 }
 function getGames($games)
 {
-  $aGames = array('title' => [],
-					        'embed' =>[],
-					        'url' => [],
-                  'thumbnail' => [],
-                  'date' => [],
-                  'side1' => array( 'name' => [],
-                                    'url' => []),
-                  'side2' => array( 'name' => [],
-                                    'url' => []),
-                  'competition' => array( 'name' => [],
+  $aGames = array(array('title' => [],
+					              'embed' =>[],
+					              'url' => [],
+                        'thumbnail' => [],
+                        'date' => [],
+                        'side1' => array( 'name' => [],
                                           'url' => []),
-                  'videos' => array( 'title' => [],
-                                     'embed' => []),
-					);
+                        'side2' => array( 'name' => [],
+                                          'url' => []),
+                        'competition' => array( 'name' => [],
+                                                'url' => []),
+                        'videos' => array( 'title' => [],
+                                           'embed' => []),
+					             )
+                 );
 
   for ($i = 0;
        $i < count($games);
        $i++)
   {
-      $aGames[$i]['title'] = $games[$i]['title'];
-      $aGames[$i]['embed'] = $games[$i]['embed'];
-      $aGames[$i]['url'] = $games[$i]['url'];
-      $aGames[$i]['thumbnail'] = $games[$i]['thumbnail'];
-      $aGames[$i]['date'] = $games[$i]['date'];
-      $aGames[$i]['side1'][$i]['name'] = $games[$i]['side1'][$i]['name'];
-      $aGames[$i]['side1'][$i]['url'] = $games[$i]['side1'][$i]['url'];
-      $aGames[$i]['side2'][$i]['name'] = $games[$i]['side2'][$i]['name'];
-      $aGames[$i]['side2'][$i]['url'] = $games[$i]['side2'][$i]['url'];
-      $aGames[$i]['competition'][$i]['name'] = $games[$i]['competition'][$i]['name'];
-      $aGames[$i]['competition'][$i]['url'] = $games[$i]['competition'][$i]['url'];
-      $aGames[$i]['videos'][$i]['title'] = $games[$i]['videos'][$i]['title'];
-      $aGames[$i]['videos'][$i]['embed'] = $games[$i]['videos'][$i]['embed'];
+      $aGames[$i]['title'][$i] = $games[$i]['title'][$i];
+      $aGames[$i]['embed'][$i] = $games[$i]['embed'][$i];
+      $aGames[$i]['url'][$i] = $games[$i]['url'][$i];
+      $aGames[$i]['thumbnail'][$i] = $games[$i]['thumbnail'][$i];
+      $aGames[$i]['date'][$i] = $games[$i]['date'][$i];
+      $aGames[$i]['side1'][$i]['name'][$i] = $games[$i]['side1'][$i]['name'][$i];
+      $aGames[$i]['side1'][$i]['url'][$i] = $games[$i]['side1'][$i]['url'][$i];
+      $aGames[$i]['side2'][$i]['name'][$i] = $games[$i]['side2'][$i]['name'][$i];
+      $aGames[$i]['side2'][$i]['url'][$i] = $games[$i]['side2'][$i]['url'][$i];
+      $aGames[$i]['competition'][$i]['name'][$i] = $games[$i]['competition'][$i]['name'][$i];
+      $aGames[$i]['competition'][$i]['url'][$i] = $games[$i]['competition'][$i]['url'][$i];
+      $aGames[$i]['videos'][$i]['title'][$i] = $games[$i]['videos'][$i]['title'][$i];
+      $aGames[$i]['videos'][$i]['embed'][$i] = $games[$i]['videos'][$i]['embed'][$i];
   }
 
   return($aGames);
@@ -87,3 +88,4 @@ else
 
 
 ?>
+

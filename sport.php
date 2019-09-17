@@ -1,5 +1,35 @@
 <?php
+function getUrlContent($url)
+{
+    $curl = curl_init();
+    curl_setopt_array($curl, array( CURLOPT_URL => $url,
+  	                                CURLOPT_RETURNTRANSFER => true,
+  	                                CURLOPT_ENCODING => "",
+  	                                CURLOPT_MAXREDIRS => 10,
+                                    CURLOPT_TIMEOUT => 30,
+                                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                    CURLOPT_CUSTOMREQUEST => "GET",
+                                    CURLOPT_HTTPHEADER => array("x-rapidapi-host: football-livescore.p.rapidapi.com",
+  		                                                          "x-rapidapi-key: e237d77783msh1277417c4197892p118192jsnf7d06f8c7652"
+  	                                                            ),
+                                    ));
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
+  curl_close($curl);
 
+  return $response;
+}
+function response($status, $status_message, $data)
+{
+	header("HTTP/1.1 $status $status_message");
+	$response['status'] = $status;
+	$response['status_message'] = $status_message;
+	$response['data'] = $data;
+
+	$json_response = json_encode($response);
+
+	echo $json_response;
+}
 function getGames($games)
 {
   $aGames = array('title' => [],
@@ -18,7 +48,7 @@ function getGames($games)
 					);
 
   for ($i = 0;
-       $i < count($games) ;
+       $i < count($games['title']);
        $i++)
   {
       $aGames['title'][$i] = $games['title'][$i];
@@ -39,16 +69,15 @@ function getGames($games)
   return($aGames);
 }
 
+$url = "https://www.scorebat.com/video-api/v1/"
+$content = getUrlContent($url);
+$data = json_decode($content,true);
 
-$data = getUrlContent($url);
-$content = json_decode($data,true);
-echo $data;
-
-if (count($data) == 0)
+if (count($data['title']) == 0)
 {
   deliver_response(204,"Assente",NULL);
 }
-elseif (count($data) > 0)
+elseif (count($data['title']) > 0)
 {
   $games = getGames($data);
   response(200,"Presente",$games);

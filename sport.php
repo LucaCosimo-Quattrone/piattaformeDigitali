@@ -66,7 +66,7 @@ function getGames($games)
   return($aGames);
 }
 
-$url = "https://www.scorebat.com/video-api/v1/"
+$url = "https://www.scorebat.com/video-api/v1/";
 $response = getUrlContent($url);
 $data = json_decode($response,true);
 

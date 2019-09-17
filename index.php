@@ -12,6 +12,7 @@ function getUrlContent($url)
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array("cache-control: no-cache")));
     $data = curl_exec($ch);
+	echo $data;
     curl_close($ch);
     return $data;
 }

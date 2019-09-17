@@ -45,7 +45,7 @@ function getGames($games)
 					);
 
   for ($i = 0;
-       $i < count($games['title']);
+       $i < count($games);
        $i++)
   {
       $aGames['title'][$i] = $games['title'][$i];
@@ -67,14 +67,14 @@ function getGames($games)
 }
 
 $url = "https://www.scorebat.com/video-api/v1/";
-$response = getUrlContent($url);
-$data = json_decode($response,true);
+$data = getUrlContent($url);
+$data = json_decode($data,true);
 
-if (count($data['title']) == 0)
+if (count($data) == 0)
 {
   response(204,"Assente",NULL);
 }
-elseif (count($data['title']) > 0)
+elseif (count($data) > 0)
 {
   $games = getGames($data);
   response(200,"Presente",$games);

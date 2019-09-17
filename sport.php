@@ -18,7 +18,7 @@ function getGames($games)
 					);
 
   for ($i = 0;
-       $i < count($output["meals"]) ;
+       $i < count($games) ;
        $i++)
   {
       $aGames['title'][$i] = $games['title'][$i];
@@ -42,12 +42,13 @@ function getGames($games)
 
 $data = getUrlContent($url);
 $content = json_decode($data,true);
+echo $data;
 
-if (count($data["title"]) == 0)
+if (count($data) == 0)
 {
   deliver_response(204,"Assente",NULL);
 }
-elseif (count($data["title"]) > 0)
+elseif (count($data) > 0)
 {
   $games = getGames($data);
   response(200,"Presente",$games);

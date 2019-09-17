@@ -54,14 +54,14 @@ function getGames($games)
       $aGames[$i]['url'][$i] = $games[$i]['url'][$i];
       $aGames[$i]['thumbnail'][$i] = $games[$i]['thumbnail'][$i];
       $aGames[$i]['date'][$i] = $games[$i]['date'][$i];
-      $aGames[$i]['side1'][$i]['name'][$i] = $games[$i]['side1'][$i]['name'][$i];
-      $aGames[$i]['side1'][$i]['url'][$i] = $games[$i]['side1'][$i]['url'][$i];
-      $aGames[$i]['side2'][$i]['name'][$i] = $games[$i]['side2'][$i]['name'][$i];
-      $aGames[$i]['side2'][$i]['url'][$i] = $games[$i]['side2'][$i]['url'][$i];
-      $aGames[$i]['competition'][$i]['name'][$i] = $games[$i]['competition'][$i]['name'][$i];
-      $aGames[$i]['competition'][$i]['url'][$i] = $games[$i]['competition'][$i]['url'][$i];
-      $aGames[$i]['videos'][$i]['title'][$i] = $games[$i]['videos'][$i]['title'][$i];
-      $aGames[$i]['videos'][$i]['embed'][$i] = $games[$i]['videos'][$i]['embed'][$i];
+      //$aGames[$i]['side1'][$i]['name'][$i] = $games[$i]['side1'][$i]['name'][$i];
+      //$aGames[$i]['side1'][$i]['url'][$i] = $games[$i]['side1'][$i]['url'][$i];
+      //$aGames[$i]['side2'][$i]['name'][$i] = $games[$i]['side2'][$i]['name'][$i];
+      //$aGames[$i]['side2'][$i]['url'][$i] = $games[$i]['side2'][$i]['url'][$i];
+      //$aGames[$i]['competition'][$i]['name'][$i] = $games[$i]['competition'][$i]['name'][$i];
+      //$aGames[$i]['competition'][$i]['url'][$i] = $games[$i]['competition'][$i]['url'][$i];
+      //$aGames[$i]['videos'][$i]['title'][$i] = $games[$i]['videos'][$i]['title'][$i];
+      //$aGames[$i]['videos'][$i]['embed'][$i] = $games[$i]['videos'][$i]['embed'][$i];
   }
 
   return($aGames);

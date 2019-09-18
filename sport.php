@@ -135,7 +135,8 @@ function getGames($games)
   return($aGames);
 }
 
-$url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/4";
+$league_id = $_GET['league-id'];
+$url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$league_id;
 $data = getUrlContent($url);
 $data = json_decode($data,true);
 

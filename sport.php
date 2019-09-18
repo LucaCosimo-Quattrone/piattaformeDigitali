@@ -102,12 +102,20 @@ function getGames($games)
       // Dati Squadra di casa
       $aGames[$i]['homeTeam']['team_id'] = $games['api']['fixtures'][$i]['homeTeam']['team_id'];
       $aGames[$i]['homeTeam']['team_name'] = $games['api']['fixtures'][$i]['homeTeam']['team_name'];
-      $aGames[$i]['homeTeam']['logo'] = $games['api']['fixtures'][$i]['homeTeam']['logo'];
+
+      if(!empty($games['api']['fixtures'][$i]['homeTeam']['logo']))
+        $aGames[$i]['homeTeam']['logo'] = $games['api']['fixtures'][$i]['homeTeam']['logo'];
+      else
+        $aGames[$i]['homeTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
 
       // Dati squadra ospite
       $aGames[$i]['awayTeam']['team_id'] = $games['api']['fixtures'][$i]['awayTeam']['team_id'];
       $aGames[$i]['awayTeam']['team_name'] = $games['api']['fixtures'][$i]['awayTeam']['team_name'];
-      $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['awayTeam']['logo'];
+
+      if(!empty($games['api']['fixtures'][$i]['awayTeam']['logo']))
+        $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['homeTeam']['logo'];
+      else
+        $aGames[$i]['awayTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
 
       // Goal squadra di casa
       $aGames[$i]['goalsHomeTeam'] = $games['api']['fixtures'][$i]['goalsHomeTeam'];
@@ -120,12 +128,12 @@ function getGames($games)
       $aGames[$i]['score']['fulltime'] = $games['api']['fixtures'][$i]['score']['fulltime'];
 
       // Controlli sui campi 'extratime' e 'penalty' perchè potrebbero essere nulli
-      if(!empty($games['api']['fixtures'][$i]['']))
+      if(!empty($games['api']['fixtures'][$i]['extratime']))
         $aGames[$i]['score']['extratime'] = $games['api']['fixtures'][$i]['score']['penalty'];
       else
         $aGames[$i]['score']['extratime'] = "null";
 
-      if(!empty($games['api']['fixtures'][$i]['']))
+      if(!empty($games['api']['fixtures'][$i]['penalty']))
         $aGames[$i]['score']['penalty'] = $games['api']['fixtures'][$i]['score']['penalty'];
       else
         $aGames[$i]['score']['penalty'] = "null";

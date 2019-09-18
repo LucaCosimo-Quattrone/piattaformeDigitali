@@ -87,7 +87,7 @@ function getGames($games)
   return($aGames);
 }
 
-$url = "https://www.scorebat.com/video-api/v1/";
+$url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/4";
 $data = getUrlContent($url);
 $data = json_decode($data,true);
 
@@ -107,6 +107,3 @@ else
 
 
 ?>
-
-?>
-

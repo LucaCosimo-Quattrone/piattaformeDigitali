@@ -8,8 +8,8 @@ function getUrlContent($url)
                                     CURLOPT_TIMEOUT => 30,
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
-                                    CURLOPT_HTTPHEADER => array("x-rapidapi-host": "api-football-v1.p.rapidapi.com",
-	                                                       "x-rapidapi-key": "e237d77783msh1277417c4197892p118192jsnf7d06f8c7652"),
+                                    CURLOPT_HTTPHEADER => array("x-rapidapi-host:api-football-v1.p.rapidapi.com",
+	                                                       "x-rapidapi-key:e237d77783msh1277417c4197892p118192jsnf7d06f8c7652"),
                                     ));
   $response = curl_exec($curl);
   $err = curl_error($curl);

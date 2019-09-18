@@ -97,8 +97,8 @@ if (count($data) == 0)
 }
 elseif (count($data) > 0)
 {
-  $games = getGames($data);
-  response(200,"Presente",$games);
+  //$games = getGames($data);
+  response(200,"Presente",$data);
 }
 else
 {

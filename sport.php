@@ -113,7 +113,7 @@ function getGames($games)
       $aGames[$i]['awayTeam']['team_name'] = $games['api']['fixtures'][$i]['awayTeam']['team_name'];
 
       if(!empty($games['api']['fixtures'][$i]['awayTeam']['logo']))
-        $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['homeTeam']['logo'];
+        $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['awayTeam']['logo'];
       else
         $aGames[$i]['awayTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
 

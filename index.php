@@ -59,7 +59,7 @@ function getAllInfoByMatch($games)
                  );
 
   for ($i = 0;
-       $i < count($games['api']['results']);
+       $i < count($games['api']['fixtures']);
        $i++)
   {
       // Fixture id
@@ -149,7 +149,7 @@ function getAllSquadByLeague($games)
                  );
 
   for ($i = 0;
-       $i < count($games['api']['results']);
+       $i < count($games['api']['teams']);
        $i++)
   {
       //Id Squadra
@@ -168,7 +168,6 @@ Selezione url
 */
 if($_GET['request'] == "general")
 {
-
   $league_id = $_GET['league-id'];
   $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$league_id;
   $data = getUrlContent($url);
@@ -183,16 +182,10 @@ if($_GET['request'] == "general")
     $data = getAllInfoByMatch($data);
     response(200,"Presente",$data);
   }
-  /* ALLA FINE
-  else
-  {
-    response(400,"Rischiesta non valida",NULL);
-  }
-  */
+
 }
 else if($_GET['request'] == "squad")
 {
-
   $league_id = $_GET['league-id'];
   $url = "https://api-football-v1.p.rapidapi.com/v2/teams/league/".$league_id;
   $data = getUrlContent($url);
@@ -209,6 +202,11 @@ else if($_GET['request'] == "squad")
   }
 
 }
+else
+{
+  response(400,"Rischiesta non valida",NULL);
+}
 
 
 ?>
+

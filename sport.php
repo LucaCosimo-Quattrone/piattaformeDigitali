@@ -24,9 +24,7 @@ function response($status, $status_message, $data)
 	$response['status_message'] = $status_message;
 	$response['data'] = $data;
 
-	//$json_response = json_encode($response);
-
-	echo $json_response;
+	echo $response;
 }
 
 $league_id = $_GET['league-id'];
@@ -40,7 +38,7 @@ if (count($data) == 0)
 }
 elseif (count($data) > 0)
 {
-  response(200,"Presente",$games);
+  response(200,"Presente",$data);
 }
 else
 {

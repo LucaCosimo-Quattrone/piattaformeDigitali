@@ -23,7 +23,7 @@ function response($status, $status_message, $data)
 	$response['status'] = $status;
 	$response['status_message'] = $status_message;
 	$response['data'] = $data;
-	$json_response = json_encode($response)
+	$json_response = json_encode($response);
 
 	return $json_response;
 }

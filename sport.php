@@ -27,8 +27,7 @@ function response($status, $status_message, $data)
 
 	echo $json_response;
 }
-
-function getGames($games)
+function getAllInfoByMatch($games)
 {
   $aGames = array('fixture_id' => [],
 					        'league_id' =>[],
@@ -59,7 +58,7 @@ function getGames($games)
                  );
 
   for ($i = 0;
-       $i < count($games['api']['fixtures']);
+       $i < count($games['api']['results']);
        $i++)
   {
       // Fixture id
@@ -142,26 +141,75 @@ function getGames($games)
 
   return($aGames);
 }
+function getAllSquadByLeague($games)
+{
+  $aGames = array('team_id' => [],
+					        'name' =>[],
+                 );
 
-$league_id = $_GET['league-id'];
-$url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$league_id;
-$data = getUrlContent($url);
-$data = json_decode($data,true);
+  for ($i = 0;
+       $i < count($games['api']['results']);
+       $i++)
+  {
+      //Id Squadra
+      $aGames[$i]['team_id'] = $games['api']['teams'][$i]['team_id'];
 
-if (count($data) == 0)
-{
-  response(204,"Assente",NULL);
+      //Nome squadra
+      $aGames[$i]['name'] = $games['api']['teams'][$i]['name'];
+
+  }
+
+  return($aGames);
 }
-elseif (count($data) > 0)
+
+/*
+Selezione url
+*/
+if($_GET['request'] == "general")
 {
-  $data = getGames($data);
-  response(200,"Presente",$data);
+
+  $league_id = $_GET['league-id'];
+  $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$league_id;
+  $data = getUrlContent($url);
+  $data = json_decode($data,true);
+
+  if (count($data) == 0)
+  {
+    response(204,"Assente",NULL);
+  }
+  else
+  {
+    $data = getAllInfoByMatch($data);
+    response(200,"Presente",$data);
+  }
+  /* ALLA FINE
+  else
+  {
+    response(400,"Rischiesta non valida",NULL);
+  }
+  */
 }
-else
+else if($_GET['request'] == "squad")
 {
-  response(400,"Rischiesta non valida",NULL);
+
+  $league_id = $_GET['league-id'];
+  $url = "https://api-football-v1.p.rapidapi.com/v2/teams/league/".$league_id;
+  $data = getUrlContent($url);
+  $data = json_decode($data,true);
+
+  if (count($data) == 0)
+  {
+    response(204,"Assente",NULL);
+  }
+  else
+  {
+    $data = getAllSquadByLeague($data);
+    response(200,"Presente",$data);
+  }
+  
 }
 
 
 ?>
+
 

@@ -25,7 +25,7 @@ function response($status, $status_message, $data)
 	$response['data'] = $data;
 	$json_response = json_encode($response);
 
-	return $json_response;
+	echo $json_response;
 }
 
 function getGames($games)

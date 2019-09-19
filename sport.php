@@ -23,14 +23,15 @@ function response($status, $status_message, $data)
 	$response['status'] = $status;
 	$response['status_message'] = $status_message;
 	$response['data'] = $data;
+	$json_response = json_encode($response)
 
-	echo $response;
+	echo $json_response;
 }
 
 $league_id = $_GET['league-id'];
 $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$league_id;
 $data = getUrlContent($url);
-//$data = json_decode($data,true);
+$data = json_decode($data,true);
 
 if (count($data) == 0)
 {

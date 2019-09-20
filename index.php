@@ -162,137 +162,6 @@ function getAllSquadByLeague($games)
 
   return($aGames);
 }
-/*
-function getAllPlayerBySquad($games)
-{
-  $aGames = array('player_id' => [],
-					        'player_name' =>[],
-					        'firstname' => [],
-                  'lastname' => [],
-                  'number' => [],
-                  'position' => [],
-                  'age' => [],
-                  'birth_date' => [],
-                  'nationality' => [],
-                  'height' => [],
-                  'weight' => [],
-                  'injured' => [],
-                  'rating' => [],
-                  'team_id' => [],
-                  'team_name' => [],
-                  'season' => [],
-                  'goals' => array('total' => [],
-                                  'conceded' => [],
-                                  'assists' => [],
-                                      ),
-                  'games' => array('appearences' => [],
-                                   'minutes_played' => [],
-                                   'lineups' => [],
-                                  )
-                 );
-
-  for ($i = 0;
-       $i < count($games['api']['players']);
-       $i++)
-  {
-      // Fixture id
-      $aGames[$i]['player_id'] = $games['api']['players'][$i]['player_id'];
-
-      // Id della lega
-      $aGames[$i]['player_name'] = $games['api']['players'][$i]['player_name'];
-
-      // Dati nome
-      if(!empty($games['api']['players']))
-        $aGames[$i]['firstname'] = $games['api']['players'][$i]['firstname'];
-      else
-        $aGames[$i]['firstname'] = "null";
-
-      // Dati cognome
-      if(!empty($games['api']['players']))
-        $aGames[$i]['lastname'] = $games['api']['players'][$i]['lastname'];
-      else
-        $aGames[$i]['lastname'] = "null";
-
-      // Dati numero
-      if(!empty($games['api']['players']))
-        $aGames[$i]['number'] = $games['api']['players'][$i]['number'];
-      else
-        $aGames[$i]['number'] = "null";
-
-      // Dati posizione
-      if(!empty($games['api']['players']))
-        $aGames[$i]['position'] = $games['api']['players'][$i]['position'];
-      else
-        $aGames[$i]['position'] = "null";
-
-      // Dati età
-      if(!empty($games['api']['players']))
-        $aGames[$i]['age'] = $games['api']['players'][$i]['age'];
-      else
-        $aGames[$i]['age'] = "null";
-
-      // Dati data di nascita
-      if(!empty($games['api']['players']))
-        $aGames[$i]['birth_date'] = $games['api']['players'][$i]['birth_date'];
-      else
-        $aGames[$i]['birth_date'] = "null";
-
-      // Dati nazionalità
-      if(!empty($games['api']['players']))
-        $aGames[$i]['nationality'] = $games['api']['players'][$i]['nationality'];
-      else
-        $aGames[$i]['nationality'] = "null";
-
-      // Dati altezza
-      if(!empty($games['api']['players']))
-        $aGames[$i]['height'] = $games['api']['players'][$i]['height'];
-      else
-        $aGames[$i]['height'] = "null";
-
-      // Dati peso
-      if(!empty($games['api']['players']))
-        $aGames[$i]['weight'] = $games['api']['players'][$i]['weight'];
-      else
-        $aGames[$i]['weight'] = "null";
-
-      // Dati infortunio
-      if(!empty($games['api']['players']))
-        $aGames[$i]['injured'] = $games['api']['players'][$i]['injured'];
-      else
-        $aGames[$i]['injured'] = "null";
-
-      // Dati della valutazione giocatore
-      if(!empty($games['api']['players']))
-        $aGames[$i]['rating'] = $games['api']['players'][$i]['rating'];
-      else
-        $aGames[$i]['rating'] = "null";
-
-      // Dati del team_id
-      $aGames[$i]['team_id'] = $games['api']['players'][$i]['team_id'];
-
-      // Dati del nome del team
-      $aGames[$i]['team_name'] = $games['api']['players'][$i]['team_name'];
-
-      // Dati della stagione
-      $aGames[$i]['season'] = $games['api']['players'][$i]['season'];
-
-      // Dati sulle statistiche - goal
-      $aGames[$i]['goals']['total'] = $games['api']['players'][$i]['goals']['total'];
-      $aGames[$i]['goals']['conceded'] = $games['api']['players'][$i]['goals']['conceded'];
-      $aGames[$i]['goals']['assists'] = $games['api']['players'][$i]['goals']['assists'];
-
-      // Dati sulle statistiche - partite
-      $aGames[$i]['games']['appearences'] = $games['api']['players'][$i]['games']['appearences'];
-      $aGames[$i]['games']['minutes_played'] = $games['api']['players'][$i]['games']['minutes_played'];
-      $aGames[$i]['games']['lineups'] = $games['api']['players'][$i]['games']['lineups'];
-
-  }
-
-  return($aGames);
-}
-*/
-
-
 function getAllPlayerBySquad($games)
 {
   $aGames = array('player_id' => [],
@@ -375,7 +244,56 @@ function getAllPlayerBySquad($games)
 
   return($aGames);
 }
+function getLineupsByFixtures($games)
+{
+  $aGames = array('homeTeam' =>array('formation' =>[],
+                                     'startXI' =>array('player' => []
+                                                       'number' => []
+                                                       'pos' => []
+                                                      )
+                                    ),
+                  'awayTeam' =>array('formation' =>[],
+                                     'startXI' =>array('player' => []
+                                                       'number' => []
+                                                       'pos' => []
+                                                       )
+                                     )
+                  );
 
+
+      // Nome squadra
+      $aGames['homeTeam'] = $games['api']['lineUps'][0];
+
+      // Fixture id
+      $aGames['homeTeam']['formation'] = $games['api']['lineUps'][0]['formation'];
+
+      for ($i = 0;
+           $i < count($games['api']['lineUps'][0]['startXI']);
+           $i++)
+      {
+      $aGames['homeTeam'][$i]['startXI']['player'] = $games['api']['lineUps'][0]['startXI'][$i]['player'];
+      $aGames['homeTeam'][$i]['startXI']['number'] = $games['api']['lineUps'][0]['startXI'][$i]['number'];
+      $aGames['homeTeam'][$i]['startXI']['pos'] = $games['api']['lineUps'][0]['startXI'][$i]['pos'];
+      }
+
+      // Nome squadra
+      $aGames['awayTeam'] = $games['api']['lineUps'][1];
+
+      // Fixture id
+      $aGames['awayTeam']['formation'] = $games['api']['lineUps'][1]['formation'];
+
+      for ($i = 0;
+           $i < count($games['api']['lineUps'][1]['startXI']);
+           $i++)
+
+      {
+      $aGames['awayTeam'][$i]['startXI']['player'] = $games['api']['lineUps'][1]['startXI'][$i]['player'];
+      $aGames['awayTeam'][$i]['startXI']['number'] = $games['api']['lineUps'][1]['startXI'][$i]['number'];
+      $aGames['awayTeam'][$i]['startXI']['pos'] = $games['api']['lineUps'][1]['startXI'][$i]['pos'];
+      }
+
+  return($aGames);
+}
 
 /*
 Selezione url
@@ -429,6 +347,23 @@ else if($_GET['request'] == "player")
   else
   {
     $data = getAllPlayerBySquad($data);
+    response(200,"Presente",$data);
+  }
+}
+else if($_GET['request'] == "lineup")
+{
+  $fixtures_id = $_GET['fix_id'];
+  $url = "https://api-football-v1.p.rapidapi.com/v2/lineups/".$fix_id;
+  $data = getUrlContent($url);
+  $data = json_decode($data,true);
+
+  if (count($data) == 0)
+  {
+    response(204,"Assente",NULL);
+  }
+  else
+  {
+    $data = getLineupsByFixtures($data);
     response(200,"Presente",$data);
   }
 }

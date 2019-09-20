@@ -262,8 +262,7 @@ function getLineupsByFixtures($games, $homeTeam, $awayTeam)
 
 
       // Nome squadra
-      $aGames['homeTeam'] = $games['api']['lineUps'][$homeTeam]
-      ];
+      $aGames['homeTeam'] = $games['api']['lineUps'][$homeTeam];
 
       // Fixture id
       $aGames['homeTeam']['formation'] = $games['api']['lineUps'][$homeTeam]['formation'];

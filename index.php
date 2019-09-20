@@ -247,14 +247,14 @@ function getAllPlayerBySquad($games)
 function getLineupsByFixtures($games)
 {
   $aGames = array('homeTeam' =>array('formation' =>[],
-                                     'startXI' =>array('player' => []
-                                                       'number' => []
+                                     'startXI' =>array('player' => [],
+                                                       'number' => [],
                                                        'pos' => []
                                                       )
                                     ),
                   'awayTeam' =>array('formation' =>[],
-                                     'startXI' =>array('player' => []
-                                                       'number' => []
+                                     'startXI' =>array('player' => [],
+                                                       'number' => [],
                                                        'pos' => []
                                                        )
                                      )
@@ -364,4 +364,3 @@ else
 
 
 ?>
-

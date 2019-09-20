@@ -162,6 +162,7 @@ function getAllSquadByLeague($games)
 
   return($aGames);
 }
+/*
 function getAllPlayerBySquad($games)
 {
   $aGames = array('player_id' => [],
@@ -285,6 +286,91 @@ function getAllPlayerBySquad($games)
       $aGames[$i]['games']['minutes_played'] = $games['api']['players'][$i]['games']['minutes_played'];
       $aGames[$i]['games']['lineups'] = $games['api']['players'][$i]['games']['lineups'];
 
+  }
+
+  return($aGames);
+}
+*/
+
+
+function getAllPlayerBySquad($games)
+{
+  $aGames = array('player_id' => [],
+					        'player_name' =>[],
+					        'firstname' => [],
+                  'lastname' => [],
+                  'number' => [],
+                  'position' => [],
+                  'age' => [],
+                  'birth_date' => [],
+                  'nationality' => [],
+                  'height' => [],
+                  'weight' => [],
+                 );
+
+  for ($i = 0;
+       $i < count($games['api']['players']);
+       $i++)
+  {
+      // Fixture id
+      $aGames[$i]['player_id'] = $games['api']['players'][$i]['player_id'];
+
+      // Id della lega
+      $aGames[$i]['player_name'] = $games['api']['players'][$i]['player_name'];
+
+      // Dati nome
+      if(!empty($games['api']['players']))
+        $aGames[$i]['firstname'] = $games['api']['players'][$i]['firstname'];
+      else
+        $aGames[$i]['firstname'] = "null";
+
+      // Dati cognome
+      if(!empty($games['api']['players']))
+        $aGames[$i]['lastname'] = $games['api']['players'][$i]['lastname'];
+      else
+        $aGames[$i]['lastname'] = "null";
+
+      // Dati numero
+      if(!empty($games['api']['players']))
+        $aGames[$i]['number'] = $games['api']['players'][$i]['number'];
+      else
+        $aGames[$i]['number'] = "null";
+
+      // Dati posizione
+      if(!empty($games['api']['players']))
+        $aGames[$i]['position'] = $games['api']['players'][$i]['position'];
+      else
+        $aGames[$i]['position'] = "null";
+
+      // Dati età
+      if(!empty($games['api']['players']))
+        $aGames[$i]['age'] = $games['api']['players'][$i]['age'];
+      else
+        $aGames[$i]['age'] = "null";
+
+      // Dati data di nascita
+      if(!empty($games['api']['players']))
+        $aGames[$i]['birth_date'] = $games['api']['players'][$i]['birth_date'];
+      else
+        $aGames[$i]['birth_date'] = "null";
+
+      // Dati nazionalità
+      if(!empty($games['api']['players']))
+        $aGames[$i]['nationality'] = $games['api']['players'][$i]['nationality'];
+      else
+        $aGames[$i]['nationality'] = "null";
+
+      // Dati altezza
+      if(!empty($games['api']['players']))
+        $aGames[$i]['height'] = $games['api']['players'][$i]['height'];
+      else
+        $aGames[$i]['height'] = "null";
+
+      // Dati peso
+      if(!empty($games['api']['players']))
+        $aGames[$i]['weight'] = $games['api']['players'][$i]['weight'];
+      else
+        $aGames[$i]['weight'] = "null";
   }
 
   return($aGames);

@@ -332,7 +332,7 @@ else if($_GET['request'] == "squad")
 else if($_GET['request'] == "player")
 {
   $team_id = $_GET['team_id'];
-  $url = "https://api-football-v1.p.rapidapi.com/v2/players/team/".$team_id;
+  $url = "https://api-football-v1.p.rapidapi.com/v2/players/squad/".$team_id."/2019-2020";
   $data = getUrlContent($url);
   $data = json_decode($data,true);
 

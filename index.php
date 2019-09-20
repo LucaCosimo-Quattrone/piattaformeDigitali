@@ -179,6 +179,7 @@ function getAllPlayerBySquad($games)
                   'rating' => [],
                   'team_id' => [],
                   'team_name' => [],
+                  'season' => [],
                   'goals' => array('total' => [],
                                   'conceded' => [],
                                   'assists' => [],
@@ -270,6 +271,9 @@ function getAllPlayerBySquad($games)
 
       // Dati del nome del team
       $aGames[$i]['team_name'] = $games['api']['players'][$i]['team_name'];
+
+      // Dati della stagione
+      $aGames[$i]['season'] = $games['api']['players'][$i]['season'];
 
       // Dati sulle statistiche - goal
       $aGames[$i]['goals']['total'] = $games['api']['players'][$i]['goals']['total'];

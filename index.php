@@ -142,6 +142,120 @@ function getAllInfoByMatch($games)
 
   return($aGames);
 }
+function getAllInfoByMatchWithRound($games)
+{
+  $aGames = array('fixture_id' => [],
+					        'league_id' =>[],
+					        'event_date' => [],
+                  'event_timestamp' => [],
+                  'firstHalfStart' => [],
+                  'secondHalfStart' => [],
+                  'round' => [],
+                  'status' => [],
+                  'elapsed' => [],
+                  'venue' => [],
+                  'referee' => [],
+                  'homeTeam' => array('team_id' => [],
+                                      'team_name' => [],
+                                      'logo' => [],
+                                      ),
+                  'awayTeam' => array('team_id' => [],
+                                      'team_name' => [],
+                                      'logo' => [],
+                                      ),
+                  'goalsHomeTeam' => [],
+                  'goalsAwayTeam' => [],
+                  'score' => array('halftime' => [],
+                                   'fulltime' => [],
+                                   'extratime' => [],
+                                   'penalty' => [],
+                                  )
+                 );
+
+  for ($i = 0;
+       $i < count($games['api']['fixtures']);
+       $i++)
+  {
+      // Fixture id
+      $aGames[$i]['fixture_id'] = $games['api']['fixtures'][$i]['fixture_id'];
+
+      // Id della lega
+      $aGames[$i]['league_id'] = $games['api']['fixtures'][$i]['league_id'];
+
+      // Data dell'evento
+      $aGames[$i]['event_date'] = $games['api']['fixtures'][$i]['event_date'];
+
+      // Timestamp evento
+      $aGames[$i]['event_timestamp'] = $games['api']['fixtures'][$i]['event_timestamp'];
+
+      // Inizio primo tempo (Timestamp)
+      $aGames[$i]['firstHalfStart'] = $games['api']['fixtures'][$i]['firstHalfStart'];
+
+      // Inizio secondo tempo (Timestamp)
+      $aGames[$i]['secondHalfStart'] = $games['api']['fixtures'][$i]['secondHalfStart'];
+
+      // Dati sulla partita disputata
+      $aGames[$i]['round'] = $games['api']['fixtures'][$i]['round'];
+
+
+      // Dati sullo stato della partita
+      $aGames[$i]['status'] = $games['api']['fixtures'][$i]['status'];
+
+      // Dati sul tempo giocato
+      $aGames[$i]['elapsed'] = $games['api']['fixtures'][$i]['elapsed'];
+
+      // Dati sullo stadio
+      $aGames[$i]['venue'] = $games['api']['fixtures'][$i]['venue'];
+
+      // Dati sull'arbitro
+      if(!empty($games['api']['fixtures'][$i]['referee']))
+        $aGames[$i]['referee'] = $games['api']['fixtures'][$i]['referee'];
+      else
+        $aGames[$i]['referee'] = "null";
+
+      // Dati Squadra di casa
+      $aGames[$i]['homeTeam']['team_id'] = $games['api']['fixtures'][$i]['homeTeam']['team_id'];
+      $aGames[$i]['homeTeam']['team_name'] = $games['api']['fixtures'][$i]['homeTeam']['team_name'];
+
+      if(!empty($games['api']['fixtures'][$i]['homeTeam']['logo']))
+        $aGames[$i]['homeTeam']['logo'] = $games['api']['fixtures'][$i]['homeTeam']['logo'];
+      else
+        $aGames[$i]['homeTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
+
+      // Dati squadra ospite
+      $aGames[$i]['awayTeam']['team_id'] = $games['api']['fixtures'][$i]['awayTeam']['team_id'];
+      $aGames[$i]['awayTeam']['team_name'] = $games['api']['fixtures'][$i]['awayTeam']['team_name'];
+
+      if(!empty($games['api']['fixtures'][$i]['awayTeam']['logo']))
+        $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['awayTeam']['logo'];
+      else
+        $aGames[$i]['awayTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
+
+      // Goal squadra di casa
+      $aGames[$i]['goalsHomeTeam'] = $games['api']['fixtures'][$i]['goalsHomeTeam'];
+
+      // Goal squadra ospite
+      $aGames[$i]['goalsAwayTeam'] = $games['api']['fixtures'][$i]['goalsAwayTeam'];
+
+      // Risultato
+      $aGames[$i]['score']['halftime'] = $games['api']['fixtures'][$i]['score']['halftime'];
+      $aGames[$i]['score']['fulltime'] = $games['api']['fixtures'][$i]['score']['fulltime'];
+
+      // Controlli sui campi 'extratime' e 'penalty' perchè potrebbero essere nulli
+      if(!empty($games['api']['fixtures'][$i]['extratime']))
+        $aGames[$i]['score']['extratime'] = $games['api']['fixtures'][$i]['score']['penalty'];
+      else
+        $aGames[$i]['score']['extratime'] = "null";
+
+      if(!empty($games['api']['fixtures'][$i]['penalty']))
+        $aGames[$i]['score']['penalty'] = $games['api']['fixtures'][$i]['score']['penalty'];
+      else
+        $aGames[$i]['score']['penalty'] = "null";
+
+  }
+
+  return($aGames);
+}
 function getAllSquadByLeague($games)
 {
   $aGames = array('team_id' => [],
@@ -246,7 +360,6 @@ function getAllPlayerBySquad($games)
 }
 function getLineupsByFixtures($games, $homeTeam, $awayTeam)
 {
-	
   $aGames = array('homeTeam' =>array('formation' =>[],
                                      'startXI' =>array('player' => [],
                                                        'number' => [],
@@ -357,6 +470,24 @@ else if($_GET['request'] == "lineup")
   $homeTeam = $_GET['home_team'];
   $awayTeam = $_GET['away_team'];
   $url = "https://api-football-v1.p.rapidapi.com/v2/lineups/".$fixtures_id;
+  $data = getUrlContent($url);
+  $data = json_decode($data,true);
+
+  if (count($data) == 0)
+  {
+    response(204,"Assente",NULL);
+  }
+  else
+  {
+    $data = getLineupsByFixtures($data, $homeTeam, $awayTeam);
+    response(200,"Presente",$data);
+  }
+}
+else if($_GET['request'] == "roundfix")
+{
+  $fixtures_id = $_GET['league-id'];
+  $round = $_GET['round'];
+  $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$fixtures_id."/".htmlspecialchars($round);
   $data = getUrlContent($url);
   $data = json_decode($data,true);
 

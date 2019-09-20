@@ -267,9 +267,15 @@ function getLineupsByFixtures($games)
       // Fixture id
       $aGames['homeTeam']['formation'] = $games['api']['lineUps'][0]['formation'];
 
-      $aGames['homeTeam']['startXI'][0]['player'] = $games['api']['lineUps'][0]['startXI'][$i]['player'];
-      $aGames['homeTeam']['startXI'][0]['number'] = $games['api']['lineUps'][0]['startXI'][$i]['number'];
-      $aGames['homeTeam']['startXI'][0]['pos'] = $games['api']['lineUps'][0]['startXI'][$i]['pos'];
+
+      for ($i = 0;
+           $i < count($games['api']['lineUps'][0]['startXI']);
+           $i++)
+      {
+        $aGames['homeTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][0]['startXI'][$i]['player'];
+        $aGames['homeTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][0]['startXI'][$i]['number'];
+        $aGames['homeTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][0]['startXI'][$i]['pos'];
+      }
 
       // Nome squadra
       $aGames['awayTeam'] = $games['api']['lineUps'][1];
@@ -277,10 +283,14 @@ function getLineupsByFixtures($games)
       // Fixture id
       $aGames['awayTeam']['formation'] = $games['api']['lineUps'][1]['formation'];
 
-      $aGames['awayTeam']['startXI'][1]['player'] = $games['api']['lineUps'][1]['startXI'][$i]['player'];
-      $aGames['awayTeam']['startXI'][1]['number'] = $games['api']['lineUps'][1]['startXI'][$i]['number'];
-      $aGames['awayTeam']['startXI'][1]['pos'] = $games['api']['lineUps'][1]['startXI'][$i]['pos'];
-
+      for ($i = 0;
+           $i < count($games['api']['lineUps'][1]['startXI']);
+           $i++)
+      {
+        $aGames['awayTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][1]['startXI'][$i]['player'];
+        $aGames['awayTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][1]['startXI'][$i]['number'];
+        $aGames['awayTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][1]['startXI'][$i]['pos'];
+      }
 
   return($aGames);
 }

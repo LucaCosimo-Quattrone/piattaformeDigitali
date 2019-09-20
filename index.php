@@ -497,7 +497,7 @@ else if($_GET['request'] == "roundfix")
   }
   else
   {
-    $data = getLineupsByFixtures($data, $homeTeam, $awayTeam);
+    $data = getAllInfoByMatchWithRound($data);
     response(200,"Presente",$data);
   }
 }

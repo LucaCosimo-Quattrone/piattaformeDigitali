@@ -246,6 +246,8 @@ function getAllPlayerBySquad($games)
 }
 function getLineupsByFixtures($games, $homeTeam, $awayTeam)
 {
+	
+  echo "<script>console.log('Squadra di casa: " . $homeTeam . " squaDRA OSPITE: ". $awayTeam ." ' );</script>";	
   $aGames = array('homeTeam' =>array('formation' =>[],
                                      'startXI' =>array('player' => [],
                                                        'number' => [],

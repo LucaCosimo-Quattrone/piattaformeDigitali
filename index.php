@@ -244,7 +244,7 @@ function getAllPlayerBySquad($games)
 
   return($aGames);
 }
-function getLineupsByFixtures($games)
+function getLineupsByFixtures($games, $homeTeam, $awayTeam)
 {
   $aGames = array('homeTeam' =>array('formation' =>[],
                                      'startXI' =>array('player' => [],
@@ -262,34 +262,35 @@ function getLineupsByFixtures($games)
 
 
       // Nome squadra
-      $aGames['homeTeam'] = $games['api']['lineUps'][0];
+      $aGames['homeTeam'] = $games['api']['lineUps'][$homeTeam]
+      ];
 
       // Fixture id
-      $aGames['homeTeam']['formation'] = $games['api']['lineUps'][0]['formation'];
+      $aGames['homeTeam']['formation'] = $games['api']['lineUps'][$homeTeam]['formation'];
 
 
       for ($i = 0;
-           $i < count($games['api']['lineUps'][0]['startXI']);
+           $i < count($games['api']['lineUps'][$homeTeam]['startXI']);
            $i++)
       {
-        $aGames['homeTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][0]['startXI'][$i]['player'];
-        $aGames['homeTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][0]['startXI'][$i]['number'];
-        $aGames['homeTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][0]['startXI'][$i]['pos'];
+        $aGames['homeTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][$homeTeam]['startXI'][$i]['player'];
+        $aGames['homeTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][$homeTeam]['startXI'][$i]['number'];
+        $aGames['homeTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][$homeTeam]['startXI'][$i]['pos'];
       }
 
       // Nome squadra
-      $aGames['awayTeam'] = $games['api']['lineUps'][1];
+      $aGames['awayTeam'] = $games['api']['lineUps'][$awayTeam];
 
       // Fixture id
-      $aGames['awayTeam']['formation'] = $games['api']['lineUps'][1]['formation'];
+      $aGames['awayTeam']['formation'] = $games['api']['lineUps'][$awayTeam]['formation'];
 
       for ($i = 0;
-           $i < count($games['api']['lineUps'][1]['startXI']);
+           $i < count($games['api']['lineUps'][$awayTeam]['startXI']);
            $i++)
       {
-        $aGames['awayTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][1]['startXI'][$i]['player'];
-        $aGames['awayTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][1]['startXI'][$i]['number'];
-        $aGames['awayTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][1]['startXI'][$i]['pos'];
+        $aGames['awayTeam']['startXI'][$i]['player'] = $games['api']['lineUps'][$awayTeam]['startXI'][$i]['player'];
+        $aGames['awayTeam']['startXI'][$i]['number'] = $games['api']['lineUps'][$awayTeam]['startXI'][$i]['number'];
+        $aGames['awayTeam']['startXI'][$i]['pos'] = $games['api']['lineUps'][$awayTeam]['startXI'][$i]['pos'];
       }
 
   return($aGames);
@@ -353,6 +354,8 @@ else if($_GET['request'] == "player")
 else if($_GET['request'] == "lineup")
 {
   $fixtures_id = $_GET['fix_id'];
+  $homeTeam = $_GET['home_team'];
+  $awayTeam = $_GET['away_team'];
   $url = "https://api-football-v1.p.rapidapi.com/v2/lineups/".$fixtures_id;
   $data = getUrlContent($url);
   $data = json_decode($data,true);
@@ -363,7 +366,7 @@ else if($_GET['request'] == "lineup")
   }
   else
   {
-    $data = getLineupsByFixtures($data);
+    $data = getLineupsByFixtures($data, $homeTeam, $awayTeam);
     response(200,"Presente",$data);
   }
 }

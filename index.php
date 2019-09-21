@@ -475,8 +475,6 @@ else if($_GET['request'] == "player")
 else if($_GET['request'] == "lineup")
 {
   $fixtures_id = $_GET['fix_id'];
-  $homeTeam = $_GET['home_team'];
-  $awayTeam = $_GET['away_team'];
   $url = "https://api-football-v1.p.rapidapi.com/v2/lineups/".$fixtures_id;
   $data = getUrlContent($url);
   $data = json_decode($data,true);

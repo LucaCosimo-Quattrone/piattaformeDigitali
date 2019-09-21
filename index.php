@@ -124,8 +124,16 @@ function getAllInfoByMatch($games)
       $aGames[$i]['goalsAwayTeam'] = $games['api']['fixtures'][$i]['goalsAwayTeam'];
 
       // Risultato
-      $aGames[$i]['score']['halftime'] = $games['api']['fixtures'][$i]['score']['halftime'];
-      $aGames[$i]['score']['fulltime'] = $games['api']['fixtures'][$i]['score']['fulltime'];
+      if(!empty($games['api']['fixtures'][$i]['score']['halftime']))
+        $aGames[$i]['score']['halftime'] = $games['api']['fixtures'][$i]['score']['halftime'];
+      else
+        $aGames[$i]['score']['halftime'] = "null";
+
+      if(!empty($games['api']['fixtures'][$i]['score']['fulltime']))
+        $aGames[$i]['score']['fulltime'] = $games['api']['fixtures'][$i]['score']['fulltime'];
+      else
+        $aGames[$i]['score']['fulltime'] = "null";
+
 
       // Controlli sui campi 'extratime' e 'penalty' perchè potrebbero essere nulli
       if(!empty($games['api']['fixtures'][$i]['extratime']))

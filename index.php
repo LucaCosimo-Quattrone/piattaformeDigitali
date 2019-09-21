@@ -485,9 +485,9 @@ else if($_GET['request'] == "lineup")
 }
 else if($_GET['request'] == "roundfix")
 {
-  $fixtures_id = $_GET['league-id'];
+  $league_id = $_GET['league-id'];
   $round = $_GET['round'];
-  $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/".$fixtures_id."/Regular_Season_-_". $round;
+  $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/". $league_id ."/Regular_Season_-_". $round;
   $data = getUrlContent($url);
   $data = json_decode($data,true);
 

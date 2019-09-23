@@ -1,0 +1,537 @@
+openapi: 3.0.0
+
+servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/LucaCosimo-Quattrone/AllFootball-ws/1.0.0
+  - description: SwaggerHub API Auto Mocking
+    url: https://piattaformedigitali-ws.herokuapp.com/
+info:
+  description: Documentazione che descrive l'utilizzo delle API utilizzate nel ws AllFootball
+  version: "1.0.0"
+  title: API AllFootball
+  contact:
+    email: c.quattrone@campus.uniurb.it
+
+tags:
+- name: match
+  description: Mostra tutte le informazioni sulle partite
+- name: squad
+  description: Mostra tutte le informazioni su una squadra
+- name: players
+  description: Mostra tutte le informazioni sui giocatori
+- name: lineup
+  description: Mostra tutte le informazioni sulla lineup
+
+paths:
+  /v2/fixtures/league/{idLega}:
+    get:
+      tags:
+      - match
+      summary: Mostra tutte le partite di un determinato campionato
+      description: Una volta specificato l'id della lega questa funzione permette di ottenere tutte le informazioni su tutte le partite disputate in questa lega.
+      parameters:
+        - in: path
+          name: idLega
+          description: id del Campionato scelto.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                      type: integer
+                      example: 200
+                    status_message:
+                      type: string
+                      example: Presente
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          fixture_id:
+                            type: integer
+                            example: 23423
+                          league_id:
+                            type: integer
+                            example: 526
+                          event_date:
+                            type: number
+                            example: 2019-08-01
+                          round:
+                            type: string
+                            example: Regular Season - 1
+                          status:
+                            type: string
+                            example: Match Finished
+                          homeTeam:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                team_id:
+                                  type: integer
+                                  example: 2441
+                                team_name:
+                                  type: string
+                                  example: Liverpool
+                                logo:
+                                  type: string
+                                  example: https://media.api-football.com/teams/33.png
+                          awayTeam:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                team_id:
+                                  type: integer
+                                  example: 2441
+                                team_name:
+                                  type: string
+                                  example: Chelsea
+                                logo:
+                                  type: string
+                                  example: https://media.api-football.com/teams/33.png
+                          score:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                halftime:
+                                  type: string
+                                  example: 1 -0
+                                fulltime:
+                                  type: string
+                                  example: 1 - 2
+                                extratime:
+                                  type: string
+                                  example: 2 - 2
+        '204':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 204
+                  message: Assente
+        '400':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 400
+                  message: Richiesta non valida
+                  
+  /v2/teams/league/{idLega}:
+    get:
+      tags:
+      - squad
+      summary: Mostra tutte le squadre di un campionato
+      description: Una volta specificato l'id della lega questa funzione permette di ottenere tutte le squadre del campionato selezionato.
+      parameters:
+        - in: path
+          name: idLega
+          description: id del Campionato scelto.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                      type: integer
+                      example: 200
+                    status_message:
+                      type: string
+                      example: Presente
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          team_id:
+                            type: integer
+                            example: 56234
+                          name:
+                            type: string
+                            example: Chelsea
+        '204':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 204
+                  message: Assente
+        '400':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 400
+                  message: Richiesta non valida
+                  
+  /v2/players/squad/{idTeam}/{season}:
+    get:
+      tags:
+      - players
+      summary: Mostra tutti giocatori di una squadra dell'anno specificato
+      description: Una volta specificata la squadra e l'anno si otterrà la lista completa della rosa della squadra.
+      parameters:
+        - in: path
+          name: idTeam
+          description: id della squadra.
+          required: true
+          schema:
+            type: integer
+        - in: path  
+          name: season
+          description: stagione scelta.
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    status:
+                      type: integer
+                      example: 200
+                    status_message:
+                      type: string
+                      example: Presente
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          player_id:
+                            type: integer
+                            example: 234232
+                          player_name:
+                            type: string
+                            example: Adrien Rabiot
+                          firstname:
+                            type: string
+                            example: Adrien
+                          lastname:
+                            type: string
+                            example: Rabiot
+                          number:
+                            type: integer
+                            example: 26
+                          position:
+                            type: string
+                            example: Midfielder
+                          age:
+                            type: integer
+                            example: 27
+                          nationality:
+                            type: string
+                            example: France
+                          height:
+                            type: string
+                            example: 188 cm
+                          weight:
+                            type: string
+                            example: 89 kg
+        '204':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 204
+                  message: Assente
+        '400':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 400
+                  message: Richiesta non valida
+                  
+  /v2/lineups/{idMatch}:
+    get:
+      tags:
+      - lineup
+      summary: Mostra le formazioni di una data partita
+      description: Una volta specificato l'id della partita, questa funzione permetterà di ottenere le due formazioni iniziali delle squadre.
+      parameters:
+        - in: path
+          name: idMatch
+          description: id della partita.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Presente
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        homeTeam:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              formation:
+                                type: string
+                                example: 4-4-2
+                              startXI:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    player:
+                                      type: string
+                                      example: Dani Alves
+                                    number:
+                                      type: integer
+                                      example: 14
+                                    pos:
+                                      type: string
+                                      example: D
+                        awayTeam:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              formation:
+                                type: string
+                                example: 4-4-2
+                              startXI:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    player:
+                                      type: string
+                                      example: Juan Bernat
+                                    number:
+                                      type: integer
+                                      example: 6
+                                    pos:
+                                      type: string
+                                      example: D                               
+        '204':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 204
+                  message: Assente
+        '400':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: integer
+                  status message: 
+                    type: string
+                example:
+                  result: 400
+                  message: Richiesta non valida
+                  
+  /v2/fixtures/league/{idLega}/{nGiornata}:
+    get:
+        tags:
+        - match
+        summary: Mostra tutte le partite di un determinato campionato di una determinata giornata
+        description: Una volta specificato l'id della lega questa funzione permette di ottenere tutte le informazioni sule partite disputate in questa lega solo nella giornata selezionata.
+        parameters:
+          - in: path
+            name: idLega
+            description: id del Campionato scelto.
+            required: true
+            schema:
+              type: integer
+          - in: path
+            name: nGiornata
+            description: Numero della giornata scelta.
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      status:
+                        type: integer
+                        example: 200
+                      status_message:
+                        type: string
+                        example: Presente
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fixture_id:
+                              type: integer
+                              example: 23423
+                            league_id:
+                              type: integer
+                              example: 526
+                            event_date:
+                              type: number
+                              example: 2019-08-01
+                            round:
+                              type: string
+                              example: Regular Season - 1
+                            status:
+                              type: string
+                              example: Match Finished
+                            homeTeam:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  team_id:
+                                    type: integer
+                                    example: 2441
+                                  team_name:
+                                    type: string
+                                    example: Bornemouth
+                                  logo:
+                                    type: string
+                                    example: https://media.api-football.com/teams/33.png
+                            awayTeam:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  team_id:
+                                    type: integer
+                                    example: 2441
+                                  team_name:
+                                    type: string
+                                    example: Norwich
+                                  logo:
+                                    type: string
+                                    example: https://media.api-football.com/teams/33.png
+                            score:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  halftime:
+                                    type: string
+                                    example: 1 -0
+                                  fulltime:
+                                    type: string
+                                    example: 1 - 2
+                                  extratime:
+                                    type: string
+                                    example: 2 - 2
+          '204':
+            description: bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status: 
+                      type: integer
+                    status message: 
+                      type: string
+                  example:
+                    result: 204
+                    message: Assente
+          '400':
+            description: internal server error
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status: 
+                      type: integer
+                    status message: 
+                      type: string
+                  example:
+                    result: 400
+                    message: Richiesta non valida

@@ -33,14 +33,8 @@ function getAllInfoByMatch($games)
   $aGames = array('fixture_id' => [],
 					        'league_id' =>[],
 					        'event_date' => [],
-                  'event_timestamp' => [],
-                  'firstHalfStart' => [],
-                  'secondHalfStart' => [],
                   'round' => [],
                   'status' => [],
-                  'elapsed' => [],
-                  'venue' => [],
-                  'referee' => [],
                   'homeTeam' => array('team_id' => [],
                                       'team_name' => [],
                                       'logo' => [],
@@ -49,12 +43,9 @@ function getAllInfoByMatch($games)
                                       'team_name' => [],
                                       'logo' => [],
                                       ),
-                  'goalsHomeTeam' => [],
-                  'goalsAwayTeam' => [],
                   'score' => array('halftime' => [],
                                    'fulltime' => [],
                                    'extratime' => [],
-                                   'penalty' => [],
                                   )
                  );
 
@@ -71,33 +62,11 @@ function getAllInfoByMatch($games)
       // Data dell'evento
       $aGames[$i]['event_date'] = $games['api']['fixtures'][$i]['event_date'];
 
-      // Timestamp evento
-      $aGames[$i]['event_timestamp'] = $games['api']['fixtures'][$i]['event_timestamp'];
-
-      // Inizio primo tempo (Timestamp)
-      $aGames[$i]['firstHalfStart'] = $games['api']['fixtures'][$i]['firstHalfStart'];
-
-      // Inizio secondo tempo (Timestamp)
-      $aGames[$i]['secondHalfStart'] = $games['api']['fixtures'][$i]['secondHalfStart'];
-
       // Dati sulla partita disputata
       $aGames[$i]['round'] = $games['api']['fixtures'][$i]['round'];
 
-
       // Dati sullo stato della partita
       $aGames[$i]['status'] = $games['api']['fixtures'][$i]['status'];
-
-      // Dati sul tempo giocato
-      $aGames[$i]['elapsed'] = $games['api']['fixtures'][$i]['elapsed'];
-
-      // Dati sullo stadio
-      $aGames[$i]['venue'] = $games['api']['fixtures'][$i]['venue'];
-
-      // Dati sull'arbitro
-      if(!empty($games['api']['fixtures'][$i]['referee']))
-        $aGames[$i]['referee'] = $games['api']['fixtures'][$i]['referee'];
-      else
-        $aGames[$i]['referee'] = "null";
 
       // Dati Squadra di casa
       $aGames[$i]['homeTeam']['team_id'] = $games['api']['fixtures'][$i]['homeTeam']['team_id'];
@@ -116,12 +85,6 @@ function getAllInfoByMatch($games)
         $aGames[$i]['awayTeam']['logo'] = $games['api']['fixtures'][$i]['awayTeam']['logo'];
       else
         $aGames[$i]['awayTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
-
-      // Goal squadra di casa
-      $aGames[$i]['goalsHomeTeam'] = $games['api']['fixtures'][$i]['goalsHomeTeam'];
-
-      // Goal squadra ospite
-      $aGames[$i]['goalsAwayTeam'] = $games['api']['fixtures'][$i]['goalsAwayTeam'];
 
       // Risultato
       if(!empty($games['api']['fixtures'][$i]['score']['halftime']))
@@ -134,17 +97,11 @@ function getAllInfoByMatch($games)
       else
         $aGames[$i]['score']['fulltime'] = "null";
 
-
       // Controlli sui campi 'extratime' e 'penalty' perchè potrebbero essere nulli
       if(!empty($games['api']['fixtures'][$i]['extratime']))
         $aGames[$i]['score']['extratime'] = $games['api']['fixtures'][$i]['score']['penalty'];
       else
         $aGames[$i]['score']['extratime'] = "null";
-
-      if(!empty($games['api']['fixtures'][$i]['penalty']))
-        $aGames[$i]['score']['penalty'] = $games['api']['fixtures'][$i]['score']['penalty'];
-      else
-        $aGames[$i]['score']['penalty'] = "null";
 
   }
 
@@ -155,14 +112,8 @@ function getAllInfoByMatchWithRound($games)
   $aGames = array('fixture_id' => [],
 					        'league_id' =>[],
 					        'event_date' => [],
-                  'event_timestamp' => [],
-                  'firstHalfStart' => [],
-                  'secondHalfStart' => [],
                   'round' => [],
                   'status' => [],
-                  'elapsed' => [],
-                  'venue' => [],
-                  'referee' => [],
                   'homeTeam' => array('team_id' => [],
                                       'team_name' => [],
                                       'logo' => [],
@@ -171,12 +122,9 @@ function getAllInfoByMatchWithRound($games)
                                       'team_name' => [],
                                       'logo' => [],
                                       ),
-                  'goalsHomeTeam' => [],
-                  'goalsAwayTeam' => [],
                   'score' => array('halftime' => [],
                                    'fulltime' => [],
                                    'extratime' => [],
-                                   'penalty' => [],
                                   )
                  );
 
@@ -193,33 +141,12 @@ function getAllInfoByMatchWithRound($games)
       // Data dell'evento
       $aGames[$i]['event_date'] = $games['api']['fixtures'][$i]['event_date'];
 
-      // Timestamp evento
-      $aGames[$i]['event_timestamp'] = $games['api']['fixtures'][$i]['event_timestamp'];
-
-      // Inizio primo tempo (Timestamp)
-      $aGames[$i]['firstHalfStart'] = $games['api']['fixtures'][$i]['firstHalfStart'];
-
-      // Inizio secondo tempo (Timestamp)
-      $aGames[$i]['secondHalfStart'] = $games['api']['fixtures'][$i]['secondHalfStart'];
-
       // Dati sulla partita disputata
       $aGames[$i]['round'] = $games['api']['fixtures'][$i]['round'];
 
 
       // Dati sullo stato della partita
       $aGames[$i]['status'] = $games['api']['fixtures'][$i]['status'];
-
-      // Dati sul tempo giocato
-      $aGames[$i]['elapsed'] = $games['api']['fixtures'][$i]['elapsed'];
-
-      // Dati sullo stadio
-      $aGames[$i]['venue'] = $games['api']['fixtures'][$i]['venue'];
-
-      // Dati sull'arbitro
-      if(!empty($games['api']['fixtures'][$i]['referee']))
-        $aGames[$i]['referee'] = $games['api']['fixtures'][$i]['referee'];
-      else
-        $aGames[$i]['referee'] = "null";
 
       // Dati Squadra di casa
       $aGames[$i]['homeTeam']['team_id'] = $games['api']['fixtures'][$i]['homeTeam']['team_id'];
@@ -239,12 +166,6 @@ function getAllInfoByMatchWithRound($games)
       else
         $aGames[$i]['awayTeam']['logo'] = "https://montagnolirino.it/wp-content/uploads/2015/12/immagine-non-disponibile.png";
 
-      // Goal squadra di casa
-      $aGames[$i]['goalsHomeTeam'] = $games['api']['fixtures'][$i]['goalsHomeTeam'];
-
-      // Goal squadra ospite
-      $aGames[$i]['goalsAwayTeam'] = $games['api']['fixtures'][$i]['goalsAwayTeam'];
-
       // Risultato
       $aGames[$i]['score']['halftime'] = $games['api']['fixtures'][$i]['score']['halftime'];
       $aGames[$i]['score']['fulltime'] = $games['api']['fixtures'][$i]['score']['fulltime'];
@@ -254,11 +175,6 @@ function getAllInfoByMatchWithRound($games)
         $aGames[$i]['score']['extratime'] = $games['api']['fixtures'][$i]['score']['penalty'];
       else
         $aGames[$i]['score']['extratime'] = "null";
-
-      if(!empty($games['api']['fixtures'][$i]['penalty']))
-        $aGames[$i]['score']['penalty'] = $games['api']['fixtures'][$i]['score']['penalty'];
-      else
-        $aGames[$i]['score']['penalty'] = "null";
 
   }
 
@@ -293,7 +209,6 @@ function getAllPlayerBySquad($games)
                   'number' => [],
                   'position' => [],
                   'age' => [],
-                  'birth_date' => [],
                   'nationality' => [],
                   'height' => [],
                   'weight' => [],
@@ -338,12 +253,6 @@ function getAllPlayerBySquad($games)
         $aGames[$i]['age'] = $games['api']['players'][$i]['age'];
       else
         $aGames[$i]['age'] = "null";
-
-      // Dati data di nascita
-      if(!empty($games['api']['players']))
-        $aGames[$i]['birth_date'] = $games['api']['players'][$i]['birth_date'];
-      else
-        $aGames[$i]['birth_date'] = "null";
 
       // Dati nazionalità
       if(!empty($games['api']['players']))

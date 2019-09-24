@@ -380,4 +380,4 @@ Il server è attualmente attivo sulla piattaforma [heroku](https://dashboard.her
 ### Interazione con la piattaforma
 
 Per interagire con la piattaforma è stato realizzato un apposito client, che sfrutti al meglio le API messe a disposizione dal ws.
-Il client è realizzato in PHP/Html, l'idea è quello di simulare un sito web calcistico in cui vengono riportate tutte le notizie sul campionato di Premier League 2019/2020. Data la profondità del client è stato deciso di creare una [seconda repository](https://github.com/LucaCosimo-Quattrone/AllFootball-ws) in ci viene spiegata brevemente l'interfaccia e il funzionamento.
+Il client è realizzato in PHP/Html, l'idea è quello di simulare un sito web calcistico in cui vengono riportate tutte le notizie sul campionato di Premier League 2019/2020. Data la profondità del client è stato deciso di creare una [seconda repository](https://github.com/LucaCosimo-Quattrone/AllFootball-ws) in cui viene spiegata brevemente l'interfaccia e il funzionamento.

@@ -1,4 +1,4 @@
-# piattaformeDigitali-ws
+# AllFootball-ws
 
 RESTful API utilizzata per ottenere varie informazioni sul calcio.
 Sviluppato per l'esame di Piattaforme Digitali per la Gestione del Territorio da Quattrone Cosimo Luca, matricola , per l'anno scolastico 2018-2019.
@@ -13,10 +13,10 @@ Le richieste possibili sono queste:
 
   * Ottenere tutti i match di un dato campionato:
 
-    ```sh
-    $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/". $league_id;
-    $data = getUrlContent($url);
-    ```
+  ```sh
+  $url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/". $league_id;
+  $data = getUrlContent($url);
+  ```
 
   * Ottenere tutte le squadre di un dato campionato:
 
@@ -121,6 +121,11 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
 
     curl -X GET "https://[url]/index.php?request=general&league_id=2"
 
+  <b>Parametri: </b>
+
+    - request: Specifica la richiesta fatta dal client.
+    - league_id: L'id della lega scelta.
+  
   <b>Codici risposta: </b>
 
   | Codice | Significato     |
@@ -188,6 +193,12 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
 
     curl -X GET "https://[url]/index.php?request=roundfix&league-id=524&round=3"
 
+  <b>Parametri: </b>
+  
+    - request: Specifica la richiesta fatta dal client.
+    - league_id: L'id della lega scelta.
+    - round: Il numero della giornata scelta.
+
   <b>Codici risposta: </b>
 
   | Codice | Significato     |
@@ -203,6 +214,11 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
   <b>Richiesta: </b>
 
     curl -X GET "https://[url]/index.php?request=squad&league-id=524"
+
+  <b>Parametri: </b>
+  
+    - request: Specifica la richiesta fatta dal client.
+    - league_id: L'id della lega scelta.
 
   <b>Codici risposta: </b>
 
@@ -239,6 +255,11 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
   <b>Richiesta: </b>
 
     curl -X GET "https://[url]/request=player&team-id=3456"
+
+  <b>Parametri: </b>
+  
+    - request: Specifica la richiesta fatta dal client.
+    - team_id: L'id della lega scelta.
 
   <b>Codici risposta: </b>
 
@@ -286,6 +307,13 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
   <b>Richiesta: </b>
 
     curl -X GET "https://[url]/index.php?request=lineup&fix_id=724131&home-team=Paris-Saint-Germain&away-team=nice"
+    
+  <b>Parametri: </b>
+  
+    - request: Specifica la richiesta fatta dal client.
+    - fix_id: L'id del match scelto.
+    - home-team: Il nome della squadra di casa.
+    - away-team: Il nome della squadra ospite.
 
   <b>Codici risposta: </b>
 
@@ -352,4 +380,4 @@ Il server è attualmente attivo sulla piattaforma [heroku](https://dashboard.her
 ### Interazione con la piattaforma
 
 Per interagire con la piattaforma è stato realizzato un apposito client, che sfrutti al meglio le API messe a disposizione dal ws.
-Il client è realizzato in PHP/Html, l'idea è quello di simulare un sito web calcistico in cui vengono riportate tutte le notizie sul campionato di Premier League 2019/2020. Data la profondità del client è stato deciso di creare una [seconda repository] in ci viene spiegata brevemente l'interfaccia e il funzionamento.
+Il client è realizzato in PHP/Html, l'idea è quello di simulare un sito web calcistico in cui vengono riportate tutte le notizie sul campionato di Premier League 2019/2020. Data la profondità del client è stato deciso di creare una [seconda repository](https://github.com/LucaCosimo-Quattrone/AllFootball-ws) in ci viene spiegata brevemente l'interfaccia e il funzionamento.

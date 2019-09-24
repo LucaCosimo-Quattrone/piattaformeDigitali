@@ -100,7 +100,7 @@ Come descritto dai termini di utilizzo, i dati sono accessibili da ogni utente c
 
 ## Documentazione API
 
-La specifica dell'API è stata progettata seguendo lo standard RESTful. Si può inoltre trovare all'interno della repository, il [file](https://github.com/LucaCosimo-Quattrone/piattaformeDigitali-ws/blob/master/allfootball.yaml) '.yaml' che descrive il funzionamento dele API seguendo lo standard Open API 3.0.0.
+La specifica dell'API è stata progettata seguendo lo standard RESTful. Si può inoltre trovare all'interno della repository, il [file](https://github.com/LucaCosimo-Quattrone/piattaformeDigitali-ws/blob/master/allfootball.yaml) '.yaml' che descrive il funzionamento dele API seguendo lo standard Open API 3.0.0. Per lo sviluppo del file .yaml ho utilizzato l'editor e validator [SwaggerHub](https://app.swaggerhub.com/home)
 
 | Endpoint | Descrizione     |
 | :------------- | :------------- |

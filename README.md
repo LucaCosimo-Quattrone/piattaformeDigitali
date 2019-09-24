@@ -1,4 +1,4 @@
-# AllFootball-ws
+# piattaformeDigitali-ws
 
 RESTful API utilizzata per ottenere varie informazioni sul calcio.
 Sviluppato per l'esame di Piattaforme Digitali per la Gestione del Territorio da Quattrone Cosimo Luca, matricola , per l'anno scolastico 2018-2019.

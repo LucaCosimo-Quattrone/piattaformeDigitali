@@ -390,7 +390,8 @@ else if($_GET['request'] == "player")
   }
   else
   {
-    response(300,"PermessiNegati");
+    $data = NULL;
+    response(300,"PermessiNegati", $data);
   }
 }
 else if($_GET['request'] == "lineup")

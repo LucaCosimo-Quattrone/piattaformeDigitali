@@ -1,5 +1,7 @@
 <?php
 header("Content-Type:application/json");
+$pwd = "Test";
+
 function getUrlContent($url)
 {
     $curl = curl_init($url);
@@ -366,19 +368,29 @@ else if($_GET['request'] == "squad")
 }
 else if($_GET['request'] == "player")
 {
-  $team_id = $_GET['team_id'];
-  $url = "https://api-football-v1.p.rapidapi.com/v2/players/squad/".$team_id."/2019-2020";
-  $data = getUrlContent($url);
-  $data = json_decode($data,true);
-
-  if (count($data) == 0)
+  $username = urldecode($_GET['user']);
+  $password = urldecode($_GET['pwd']);
+  if(($username == "LuQuattr") && (password_verify($pwd, $password)))
   {
-    response(204,"Assente",NULL);
+
+    $team_id = $_GET['team_id'];
+    $url = "https://api-football-v1.p.rapidapi.com/v2/players/squad/".$team_id."/2019-2020";
+    $data = getUrlContent($url);
+    $data = json_decode($data,true);
+
+    if (count($data) == 0)
+    {
+      response(204,"Assente",NULL);
+    }
+    else
+    {
+      $data = getAllPlayerBySquad($data);
+      response(200,"Presente",$data);
+    }
   }
   else
   {
-    $data = getAllPlayerBySquad($data);
-    response(200,"Presente",$data);
+    response(300,"PermessiNegati");
   }
 }
 else if($_GET['request'] == "lineup")
@@ -425,3 +437,4 @@ else
 
 
 ?>
+

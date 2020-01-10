@@ -369,8 +369,6 @@ else if($_GET['request'] == "player")
 {
   $username = urldecode($_GET['user']);
   $password = urldecode($_GET['pwd']);
-  $bool = password_verify("test", $password)
-  echo $bool;
   if(($username == "LuQuattr") && (password_verify("test", $password)))
   {
 

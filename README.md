@@ -125,7 +125,7 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
 
     - request: Specifica la richiesta fatta dal client.
     - league_id: L'id della lega scelta.
-  
+
   <b>Codici risposta: </b>
 
   | Codice | Significato     |
@@ -194,7 +194,7 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
     curl -X GET "https://[url]/index.php?request=roundfix&league-id=524&round=3"
 
   <b>Parametri: </b>
-  
+
     - request: Specifica la richiesta fatta dal client.
     - league_id: L'id della lega scelta.
     - round: Il numero della giornata scelta.
@@ -216,7 +216,7 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
     curl -X GET "https://[url]/index.php?request=squad&league-id=524"
 
   <b>Parametri: </b>
-  
+
     - request: Specifica la richiesta fatta dal client.
     - league_id: L'id della lega scelta.
 
@@ -254,12 +254,14 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
 
   <b>Richiesta: </b>
 
-    curl -X GET "https://[url]/request=player&team-id=3456"
+    curl -X GET "https://[url]/request=player&team-id=3456&user=LuQuattr&pwd=129ehjqakwdjhakudha22as"
 
   <b>Parametri: </b>
-  
+
     - request: Specifica la richiesta fatta dal client.
     - team_id: L'id della lega scelta.
+    - user: Utente che ha effettuato la richiesta.
+    - pwd: Password dell'utente che ha fatto richiesta.
 
   <b>Codici risposta: </b>
 
@@ -267,6 +269,7 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
   | :------------- | :------------- |
   | 200 | Risposta ok |
   | 204 | Nessun risultato |
+  | 300 | Permesso negato |
   | 400 | Errore |
 
   <b> Esempio di risposta: </b>
@@ -307,9 +310,9 @@ Con [URL] viene inteso l'indirizzo del web service utilizzato ovvero: piattaform
   <b>Richiesta: </b>
 
     curl -X GET "https://[url]/index.php?request=lineup&fix_id=724131&home-team=Paris-Saint-Germain&away-team=nice"
-    
+
   <b>Parametri: </b>
-  
+
     - request: Specifica la richiesta fatta dal client.
     - fix_id: L'id del match scelto.
     - home-team: Il nome della squadra di casa.

@@ -1,6 +1,5 @@
 <?php
 header("Content-Type:application/json");
-$pwd = "Test";
 
 function getUrlContent($url)
 {
@@ -370,7 +369,7 @@ else if($_GET['request'] == "player")
 {
   $username = urldecode($_GET['user']);
   $password = urldecode($_GET['pwd']);
-  if(($username == "LuQuattr") && (password_verify($pwd, $password)))
+  if(($username == "LuQuattr") && (password_verify("Test", $password)))
   {
 
     $team_id = $_GET['team_id'];
@@ -438,4 +437,5 @@ else
 
 
 ?>
+
 
